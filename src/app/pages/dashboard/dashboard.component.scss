@@ -1,0 +1,45 @@
+.dashboard {
+    padding: 2rem;
+  
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+  
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+  
+      .card {
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        padding: 1rem;
+        transition: transform 0.2s ease;
+  
+        &:hover {
+          transform: scale(1.02);
+        }
+  
+        h3 {
+          font-size: 1.2rem;
+          color: #003366;
+        }
+  
+        p {
+          font-size: 1rem;
+          margin-top: 0.5rem;
+        }
+      }
+    }
+  
+    .section {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+  }
+  

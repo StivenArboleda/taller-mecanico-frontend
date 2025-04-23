@@ -1,0 +1,45 @@
+<section class="clientes">
+  <div class="header">
+    <h1>Gestión de Clientes</h1>
+    <button class="btn" (click)="abrirFormulario()">+ Nuevo Cliente</button>
+  </div>
+
+  <div class="search">
+    <input type="text" placeholder="Buscar por cédula o nombre..." [(ngModel)]="filtro" (input)="buscarCliente()" />
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Cédula</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Teléfono</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientesFiltrados">
+          <td>{{ cliente.cedula }}</td>
+          <td>{{ cliente.nombre }} {{ cliente.apellido }}</td>
+          <td>{{ cliente.email }}</td>
+          <td>{{ cliente.telefono }}</td>
+          <td>
+            <button class="edit" (click)="editarCliente(cliente)">Editar</button>
+            <button class="delete" (click)="eliminarCliente(cliente)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- FORMULARIO ADD CLIENTE -->
+<app-formulario-cliente
+  [visible]="mostrarFormulario"
+  [cliente]="clienteEditando || {}"
+  [modoEdicion]="modoEdicion"
+  (cerrar)="cerrarFormulario()"
+  (guardar)="guardarCliente($event)">
+</app-formulario-cliente>

@@ -1,0 +1,36 @@
+<nav class="sidebar" [class.collapsed]="isCollapsed">
+    <div class="sidebar-header">
+      <div class="header-content">
+        <div class="toggle-btn" (click)="toggleSidebar()">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+        <span class="logo">🛠️ TALLER</span>
+      </div>
+    </div>
+  
+    <hr class="divider" />
+  
+    <ul class="nav-links">
+      <li routerLink="/dashboard" routerLinkActive="active" data-tooltip="Dashboard">
+        <i class="fa-solid fa-gauge-high"></i>
+        <span>Dashboard</span>
+      </li>
+      <li routerLink="/citas" routerLinkActive="active" data-tooltip="Citas">
+        <i class="fa-solid fa-calendar-check"></i>
+        <span>Citas</span>
+      </li>
+      <li routerLink="/clientes" routerLinkActive="active" data-tooltip="Clientes">
+        <i class="fa-solid fa-users"></i>
+        <span>Clientes</span>
+      </li>
+      <li routerLink="/vehiculos" routerLinkActive="active" data-tooltip="Vehículos">
+        <i class="fa-solid fa-car-side"></i>
+        <span>Vehículos</span>
+      </li>
+      <li routerLink="/historial" routerLinkActive="active" data-tooltip="Historial">
+        <i class="fa-solid fa-file-lines"></i>
+        <span>Historial</span>
+      </li>
+    </ul>
+  </nav>
+  

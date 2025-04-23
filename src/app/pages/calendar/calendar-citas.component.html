@@ -1,0 +1,30 @@
+
+<div class="calendar-container">
+  <mwl-calendar-month-view
+  [viewDate]="viewDate"
+  [events]="events"
+  [refresh]="refresh"
+  (eventClicked)="onEventClick($event.event)"
+>
+</mwl-calendar-month-view>
+
+</div>
+
+<div class="event-modal-overlay" *ngIf="selectedEvent">
+  <div class="event-modal-card">
+    <h3 class="event-title-centered">{{ selectedEvent.title }}</h3>
+
+    <p><strong>Cliente:</strong> {{ selectedEvent.meta?.cliente }}</p>
+    <p><strong>Vehículo:</strong> {{ selectedEvent.meta?.vehiculo }}</p>
+    <p><strong>Placa:</strong> {{ selectedEvent.meta?.placa }}</p>
+    <p><strong>Mecánico:</strong> {{ selectedEvent.meta?.mecanico }}</p>
+
+    <p class="event-datetime">
+      <strong>Inicio:</strong> {{ selectedEvent.start | date: 'hh:mm a' }}
+      &nbsp;-&nbsp;
+      <strong>Fin:</strong> {{ selectedEvent.end | date: 'hh:mm a' }}
+    </p>
+
+    <button (click)="cerrarDetalle()">Cerrar</button>
+  </div>
+</div>
