@@ -1,4 +1,56 @@
 .dashboard {
+  padding: 2rem;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Mantiene el diseño en columnas responsivas */
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    justify-content: center; /* Centra las tarjetas horizontalmente */
+    align-items: center; /* Centra las tarjetas verticalmente dentro de su contenedor */
+  }
+
+  .card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    padding: 1rem;
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center; 
+    text-align: center; 
+
+    &:hover {
+      transform: scale(1.02);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      color: #003366;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-top: 0.5rem;
+    }
+  }
+
+  .section {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+}
+
+  .dashboard {
     padding: 2rem;
   
     h1 {
@@ -11,35 +63,44 @@
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 1.5rem;
       margin-bottom: 2rem;
-  
-      .card {
-        background-color: white;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-        padding: 1rem;
-        transition: transform 0.2s ease;
-  
-        &:hover {
-          transform: scale(1.02);
-        }
-  
-        h3 {
-          font-size: 1.2rem;
-          color: #003366;
-        }
-  
-        p {
-          font-size: 1rem;
-          margin-top: 0.5rem;
-        }
-      }
     }
   
     .section {
-      background: white;
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      margin-top: 40px;
+    }
+  
+    .section h2 {
+      text-align: center; /* Centrar el título de Estadísticas */
+      margin-bottom: 2rem;
+    }
+  
+    .section > div {
+      margin-bottom: 20px; /* Separación entre los gráficos */
+    }
+  
+    .section .top-row {
+      display: flex; /* Usamos flex para alinear los gráficos de la fila superior */
+      justify-content: space-between; /* Distribuir con espacio entre ellos */
+      gap: 20px;
+    }
+  
+    .section .top-row > div {
+      width: 48%; 
+      display: flex;
+      justify-content: center;
+      align-items: center; 
+    }
+  
+    .section .bottom-row {
+      width: 100%; /* El gráfico de barras ocupa todo el ancho */
+      margin-top: 20px;
+      display: flex;
+      justify-content: center; /* Centrar el gráfico de barras */
+      align-items: center; 
+    }
+    canvas {
+      height: 300px !important;
     }
   }
+  
   
