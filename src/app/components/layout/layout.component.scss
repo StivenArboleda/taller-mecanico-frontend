@@ -1,11 +1,21 @@
 .layout-container {
   display: flex;
   min-height: 100vh;
+  background-color: #f4f7fa;
 }
 
-.layout-main-content {
-  margin-left: 250px;
-  flex: 1;
+aside {
+  width: 250px; // Sidebar abierto
+  background-color: white;
+  transition: width 0.3s ease;
+
+  &.collapsed {
+    width: 80px; // Sidebar cerrado
+  }
+}
+
+.content-area {
+  flex: 1; // Muy importante: ocupa todo el espacio disponible
   padding: 2rem;
-  background-color: #f1f5f9;
+  transition: margin 0.3s ease;
 }

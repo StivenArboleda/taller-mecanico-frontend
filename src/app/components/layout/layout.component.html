@@ -1,6 +1,9 @@
 <div class="layout-container">
-  <app-sidebar></app-sidebar>
-  <div class="layout-main-content">
+  <aside [class.collapsed]="isSidebarCollapsed">
+    <app-sidebar></app-sidebar>
+  </aside>
+
+  <main class="content-area">
     <router-outlet></router-outlet>
-  </div>
+  </main>
 </div>

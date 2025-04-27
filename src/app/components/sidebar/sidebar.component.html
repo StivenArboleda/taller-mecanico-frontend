@@ -1,4 +1,4 @@
-<nav class="sidebar" [class.collapsed]="isCollapsed">
+<nav *ngIf="authService.isLoggedIn()" class="sidebar" [class.collapsed]="isCollapsed">
     <div class="sidebar-header">
       <div class="header-content">
         <div class="toggle-btn" (click)="toggleSidebar()">

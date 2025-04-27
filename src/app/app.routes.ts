@@ -1,16 +1,24 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from './components/layout/layout.component';
 import { LoginComponent } from './auth/login/login.component';
+import { AuthGuard } from './auth/auth.guard'; // <-- vamos a crearlo
 
 export const routes: Routes = [
   {
     path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: '',
     component: LayoutComponent,
+    canActivate: [AuthGuard], 
+    canActivateChild: [AuthGuard],
     children: [
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
-      { path: 
-        'login', 
-        component: LoginComponent },
       {
         path: 'dashboard',
         loadComponent: () =>
@@ -31,11 +39,11 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/citas/citas.component').then(m => m.CitasComponent)
       },
-      {
-        path: '**',
-        loadComponent: () =>
-          import('./pages/not-found/not-found.component').then(m => m.NotFoundComponent)
-      }
     ]
+  },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./pages/not-found/not-found.component').then(m => m.NotFoundComponent)
   }
 ];

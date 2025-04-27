@@ -59,13 +59,14 @@ export class ClientesComponent implements OnInit {
   }
 
   guardarCliente(cliente: Cliente): void {
-    const index = this.clientes.findIndex(c => c.cedula === cliente.cedula);
-  
-    if (index > -1 && cliente.id) {
+    if (this.modoEdicion) {
       this.clienteService.actualizarCliente(cliente).subscribe({
         next: (actualizado) => {
-          this.clientes[index] = actualizado;
-          this.buscarCliente();
+          const index = this.clientes.findIndex(c => c.cedula === actualizado.cedula);
+          if (index > -1) {
+            this.clientes[index] = actualizado; 
+          }
+          this.buscarCliente(); 
           this.mostrarFormulario = false;
           Swal.fire('Actualizado', 'El cliente fue actualizado correctamente.', 'success');
         },
@@ -117,7 +118,7 @@ export class ClientesComponent implements OnInit {
           next: () => {
             this.clientes = this.clientes.filter(c => c.cedula !== cliente.cedula);
             this.buscarCliente();
-            Swal.fire('Eliminado', `${cliente.nombre} ha sido eliminado.`, 'success');
+            Swal.fire('Eliminado', `${cliente.nombre} ${cliente.apellido} ha sido eliminado.`, 'success');
           },
           error: (error) => {
             Swal.fire('Error al eliminar', error?.error.message || 'No se pudo eliminar al cliente. Intenta de nuevo.', 'error');

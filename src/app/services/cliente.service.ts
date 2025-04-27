@@ -37,18 +37,17 @@ export class ClienteService {
   }
 
   actualizarCliente(cliente: Cliente): Observable<Cliente> {
-    // Asegúrate de construir el body como lo espera el backend (ClienteRequest)
     const clienteRequest = {
       nombre: cliente.nombre,
       apellido: cliente.apellido,
       email: cliente.email,
       telefono: cliente.telefono,
       direccion: cliente.direccion,
-      fechaRegistro: cliente.fechaRegistro // Solo si el backend espera este campo desde el frontend
+      fechaRegistro: cliente.fechaRegistro
     };
   
     return this.http.put<Cliente>(
-      `${this.apiUrl}/${cliente.id}`, // El backend espera el id del cliente en la URL
+      `${this.apiUrl}/${cliente.cedula}`,
       clienteRequest,
       { headers: this.getAuthHeaders() }
     );
