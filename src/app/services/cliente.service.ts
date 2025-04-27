@@ -59,5 +59,15 @@ export class ClienteService {
       headers: this.getAuthHeaders()
     });
   }
+
+  obtenerClientePorCedula(cedula: string): Observable<Cliente> {
+    console.log(`Buscando cliente con cédula: ${cedula}`);
+    console.log("RUTA USADA", `${this.apiUrl}/cedula/${cedula}`);
+    return this.http.get<Cliente>(`${this.apiUrl}/cedula/${cedula}`, 
+      {
+        headers: this.getAuthHeaders()
+      }
+    );
+  }
   
 }

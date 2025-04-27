@@ -1,0 +1,46 @@
+<div class="modal" *ngIf="visible">
+  <div class="modal-content">
+    <h2>{{ modoEdicion ? 'Editar Vehículo' : 'Nuevo Vehículo' }}</h2>
+
+    <form #formVehiculo="ngForm" (ngSubmit)="onSubmit(formVehiculo)">
+      <div class="form-group">
+        <label for="placa">Placa</label>
+        <input id="placa" name="placa" [(ngModel)]="vehiculo.placa" required [readonly]="modoEdicion" />
+      </div>
+
+      <div class="form-group">
+        <label for="marca">Marca</label>
+        <input id="marca" name="marca" [(ngModel)]="vehiculo.marca" required />
+      </div>
+
+      <div class="form-group">
+        <label for="modelo">Modelo</label>
+        <input id="modelo" name="modelo" [(ngModel)]="vehiculo.modelo" required />
+      </div>
+
+      <div class="form-group">
+        <label for="anio">Año</label>
+        <input id="anio" name="anio" type="number" [(ngModel)]="vehiculo.anio" required />
+      </div>
+
+      <div class="form-group">
+        <label for="color">Color</label>
+        <input id="color" name="color" [(ngModel)]="vehiculo.color" required />
+      </div>
+
+      <div class="form-group">
+        <label for="clienteCedula">Cliente</label>
+        <select id="clienteCedula" name="clienteCedula" [(ngModel)]="vehiculo.clienteCedula" required>
+          <option *ngFor="let cliente of clientes" [value]="cliente.cedula">
+            {{ cliente.nombre }} {{ cliente.apellido }} ({{ cliente.cedula }})
+          </option>
+        </select>
+      </div>
+
+      <div class="modal-actions">
+        <button type="submit" class="btn guardar">Guardar</button>
+        <button type="button" class="btn cancelar" (click)="onCancel()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>

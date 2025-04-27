@@ -9,7 +9,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
   private isAuthenticated(): boolean {
     const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-    console.log('AuthGuard: token encontrado:', token);
     return !!token;
   }
 
