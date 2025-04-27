@@ -1,0 +1,42 @@
+<div class="modal" *ngIf="visible">
+    <div class="modal-content">
+      <h2>Nueva Cita</h2>
+  
+      <form #formCita="ngForm" (ngSubmit)="onSubmit(formCita)">
+        <div class="form-group">
+          <label for="vehiculoPlaca">Vehículo</label>
+          <select id="vehiculoPlaca" name="vehiculoPlaca" [(ngModel)]="cita.vehiculoPlaca" (change)="onVehiculoSeleccionado()" required>
+            <option value="">-- Selecciona un vehículo --</option>
+            <option *ngFor="let vehiculo of vehiculos" [value]="vehiculo.placa">
+              {{ vehiculo.marca }} {{ vehiculo.modelo }} ({{ vehiculo.placa }})
+            </option>
+          </select>
+        </div>
+  
+        <div *ngIf="vehiculoEncontrado" class="vehiculo-info">
+          <p><strong>Cliente:</strong> {{ clienteEncontrado.nombre }} {{ clienteEncontrado.apellido }}</p>
+          <p><strong>Cédula:</strong> {{ clienteEncontrado.cedula }}</p>
+          <p><strong>Correo:</strong> {{ clienteEncontrado.email }}</p>
+          <p><strong>Teléfono:</strong> {{ clienteEncontrado.telefono }}</p>
+
+          <p><strong>Vehículo:</strong> {{ vehiculoEncontrado.marca }} {{ vehiculoEncontrado.modelo }}</p>
+        </div>
+  
+        <div class="form-group">
+          <label for="fechaCita">Fecha y Hora</label>
+          <input id="fechaCita" name="fechaCita" type="datetime-local" [(ngModel)]="cita.fechaCita" required />
+        </div>
+  
+        <div class="form-group">
+          <label for="motivo">Motivo</label>
+          <input id="motivo" name="motivo" [(ngModel)]="cita.motivo" required />
+        </div>
+  
+        <div class="modal-actions">
+          <button type="submit" class="btn guardar">Guardar</button>
+          <button type="button" class="btn cancelar" (click)="onCancel()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

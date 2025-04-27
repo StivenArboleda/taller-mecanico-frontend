@@ -1,8 +1,15 @@
 <div class="citas-page">
   <header class="citas-header">
     <h2>Gestión de Citas</h2>
+    <button class="btn" (click)="abrirFormulario()">+ Nueva Cita</button>
   </header>
 
-  <!-- Aquí insertamos el calendario -->
-  <app-calendar-citas></app-calendar-citas>
+  <app-calendar-citas [citas]="citas"></app-calendar-citas>
+
+  <app-formulario-cita
+    [visible]="mostrarFormulario"
+    [modoEdicion]="modoEdicion"
+    (cerrar)="cerrarFormulario()"
+    (guardar)="guardarCita($event)">
+  </app-formulario-cita>
 </div>
