@@ -2,12 +2,23 @@
   padding: 24px;
 
   .citas-header {
-    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    h2 {
-      font-size: 24px;
-      font-weight: 600;
+    h1 {
+      font-size: 1.8rem;
       color: #003366;
     }
+
+    .btn {
+      background-color: #003366;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
   }
 }

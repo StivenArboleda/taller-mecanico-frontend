@@ -171,7 +171,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
         plugins: {
           legend: { position: 'top' },
           tooltip: { mode: 'index', intersect: false }
-        }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              stepSize: 1
+            }
+          }
+        },
       }
     });
   }

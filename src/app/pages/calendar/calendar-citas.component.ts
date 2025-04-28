@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 import {
   CalendarEvent,
   CalendarMonthModule,
-  CalendarUtils,
   CalendarView,
 } from 'angular-calendar';
-import { startOfDay } from 'date-fns';
+import { startOfDay, addMonths, subMonths } from 'date-fns'; 
 import { Subject } from 'rxjs';
 import { CalendarConfigModule } from './calendar-config.module';
 import { Cita } from './../../models/cita.model';
@@ -15,7 +14,7 @@ import { Cita } from './../../models/cita.model';
   selector: 'app-calendar-citas',
   standalone: true,
   imports: [CommonModule, CalendarConfigModule, CalendarMonthModule],
-  providers: [CalendarUtils],
+  providers: [],
   templateUrl: './calendar-citas.component.html',
   styleUrls: ['./calendar-citas.component.scss']
 })
@@ -35,7 +34,7 @@ export class CalendarCitasComponent implements OnChanges{
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['citas']) {
       this.refresh.next(null);
-      this.cdr.detectChanges(); // Forzar la detección de cambios
+      this.cdr.detectChanges();
     }
   }
 
@@ -48,14 +47,12 @@ export class CalendarCitasComponent implements OnChanges{
         cliente: cita.clienteNombre,
         placa: cita.vehiculoPlaca,
         estado: cita.estado,  
-        // Asegúrate de que 'vehiculo' y 'mecanico' estén disponibles si los necesitas
         vehiculo: "",
         mecanico: "",
       }
     }));
   }
 
-  // Colores basados en el estado de la cita
   private getColorByStatus(status: string): { primary: string, secondary: string } {
     const colorMap: { [key: string]: { primary: string, secondary: string } } = {
       'PENDIENTE': { primary: 'orange', secondary: '#ffcc80' },
@@ -63,20 +60,14 @@ export class CalendarCitasComponent implements OnChanges{
       'CANCELADA': { primary: 'red', secondary: '#ef9a9a' },
       'COMPLETADA': { primary: 'gray', secondary: '#f5f5f5' }
     };
-  
+
     const normalizedStatus = status.toUpperCase();
-  
+
     return colorMap[normalizedStatus] || { primary: 'gray', secondary: '#e0e0e0' };
   }
 
-  crearCita() {
-    alert('Crear nueva cita');
-  }
-
-
   onEventClick(event: CalendarEvent): void {
-    console.log("Evento clickeado:", event);  // Para verificar que el evento esté llegando correctamente
-    this.selectedEvent = event;  // Asignamos el evento al modal
+    this.selectedEvent = event;  
     if (this.selectedEvent) {
       console.log("Detalles del evento seleccionando:", this.selectedEvent);
     }
@@ -86,8 +77,19 @@ export class CalendarCitasComponent implements OnChanges{
     this.selectedEvent = null;
   }
 
+  changeMonth(direction: number): void {
+    this.viewDate = direction === 1 ? addMonths(this.viewDate, 1) : subMonths(this.viewDate, 1);
+  }
+
+  getMonthName(date: Date): string {
+    const monthNames = [
+      'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+      'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+    ];
+    return monthNames[date.getMonth()];
+  }
+
   dayClicked(day: { date: Date; events: CalendarEvent[] }): void {
     console.log('Día clickeado:', day);
   }
-
 }
